@@ -1,7 +1,7 @@
 clear all
 clc
 
-fName = sprintf('tess.txt');
+fName = sprintf('cs15-1.txt');
 fid = fopen(fName);
 
 sfstr = '>>>';
@@ -26,8 +26,8 @@ while 1
     ind = 1;
     
     %get space position
-    space = strfind(lbuf, ' ');
-    space = [space length(lbuf)+1];
+    comma = strfind(lbuf, ' ');
+    comma = [comma length(lbuf)+1];
     preC = 0;
     
     
@@ -37,14 +37,14 @@ while 1
         preC = comma(i);
     end 
         
-    if strcmp(cbuf{1} = obstr)
-      frame_num += 1;
-      obj_num += str2num(cbuf{2});
+    if strcmp(cbuf{1}, obstr)
+      frame_num = frame_num+ 1;
+      obj_num = obj_num + str2num(cbuf{2});
       objflag = 1;
     end
     
-    if strcmp(cbuf{1} = trstr)
-        tr_num += str2num(cbuf{2});
+    if strcmp(cbuf{1}, trstr)
+        tr_num = tr_num+ str2num(cbuf{2});
         trflag = 1;
     end
         
@@ -60,3 +60,5 @@ while 1
     clear cbuf;
     cnt = cnt+1;
 end
+
+result = [frame_num; obj_num; tr_num];
