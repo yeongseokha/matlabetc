@@ -8,10 +8,12 @@ sfstr = '>>>';
 obstr = 'object(s)';
 trstr = 'track(s)';
 
-obflag = 0;
+objflag = 0;
 trflag = 0;
 frame_num = 0;
 obj_num = 0;
+tr_num = 0;
+
 buf = {};
 cnt = 1;
 
@@ -36,10 +38,16 @@ while 1
     end 
         
     if strcmp(cbuf{1} = obstr)
-      frame_num = frame_num+1;
-      obj_num = obj_num+str2num(cbuf{2});
-      obflag = 1;
+      frame_num += 1;
+      obj_num += str2num(cbuf{2});
+      objflag = 1;
     end
+    
+    if strcmp(cbuf{1} = trstr)
+        tr_num += str2num(cbuf{2});
+        trflag = 1;
+    end
+        
     
     %for ii = 1:length(cbuf)
     %    if length(cbuf) > 1
